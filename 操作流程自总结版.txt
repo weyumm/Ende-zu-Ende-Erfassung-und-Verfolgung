@@ -1,0 +1,50 @@
+一、yolo10 本部部署
+1、安装好python3.10和Git
+2、创建一个yolo10文件夹
+3、命令窗口执行安装指令
+pip install supervision labelme  labelme2yolo huggingface_hub google_cloud_audit_log
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install git+https://github.com/THU-MIG/yolov10.git
+
+如果，最后一步https安装不好使，我们就开始选用ssh协议安装
+git clone git@github.com:THU-MIG/yolov10.git
+
+使用ssh的方式：
+cd
+cd .ssh
+ssh-keygen -t rsa -b 4096
+第一次直接回车
+复制你的公钥，然后登录gitee或github
+
+如果还是失败，则拉取仓库至gitee
+
+二、yolo10 摄像头检测物体
+1、python yolov10-infer.py 训练之前测试
+2、python gen-imgs.py 运行截图程序准备训练数据
+3、roboflow在线标注(或者本地用labelme标注 )
+4、yolo detect train data=yolo10-test/data.yaml model=yolov10n.pt epochs=30 batch=8 imgsz=640 device=0
+5、python yolov10-detect.py 测试训练后的模型
+三、本地标注工具
+1、labelme 运行本地标注工具
+2、labelme2yolo --json_dir  D:\github\yolo10\output_images
+
+
+
+
+
+新建文件夹yolo10VLPD
+进入powershell
+python -m venv VLyoloPD
+看到文件夹中出现VLyoloPD文件夹，即可进入下一步
+
+VLyoloPD\Scripts\activate
+可以看到绿色的虚拟环境(VLyoloPD) (base) PS D:\yolo10VLPD>
+
+下面安装第三方库
+pip install supervision labelme labelme2yolo huggingface_hub google_cloud_audit_log
+
+然后
+pip install git+ssh://git@gitee.com/weyumm/yolov10.git
+
+再尝试一下
+pip install git+ssh://git@gitee.com:weyumm/CLIP.git
